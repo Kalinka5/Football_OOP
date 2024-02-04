@@ -1,6 +1,14 @@
 # import classes AttrDisplay and Pace_exception
 from display import AttrDisplay
-from pace_exception import Pace_exception
+from pace_exception import PaceException
+
+
+def pace_checking(pace):
+    min_pace, max_pace = 0, 100  # select all player`s characteristic
+    if min_pace <= pace <= max_pace:  # speed check
+        return pace
+    else:
+        raise PaceException(pace, min_pace, max_pace)  # raise exception if failure speed check
 
 
 # create class Footballer
@@ -10,18 +18,14 @@ class Footballer(AttrDisplay):
     # make init footballer profile
     def __init__(self, name, pace=0, shooting=0, passing=0, dribbling=0, defending=0, physics=0):
         self.__name = name        # select footballer name
-        minpace, maxpace = 0, 100 # select all player`s characteristic
-        if minpace < pace < maxpace:  # speed check  
-            self.pace = pace  
-        else:
-            raise Pace_exception(pace, minpace, maxpace)  # raise exception if failure speed check
+        self.pace = pace_checking(pace)
         self.shooting = shooting
         self.passing = passing
         self.dribbling = dribbling
         self.defending = defending
         self.physics = physics
-        self.__position = 'GOALKEEPER'  # make default football player position
-        self.__idol_name = 'Cristiano Ronaldo'  # make default icon name
+        self.__position = None  # make default football player position
+        self.__idol_name = 'Lionel Messi'  # make default icon name
 
     # method to print the type of class
     @staticmethod
@@ -70,9 +74,18 @@ class Footballer(AttrDisplay):
     def speak(self):
         print(f'I`m {self.__name} and I`m the best {self.__position} in the world!')
 
+    # function where we can check object`s class
+    def act(self, player):
+        if isinstance(player, CentreBack):
+            player.training_defence()
+        elif isinstance(player, Midfielder):
+            player.training_pass()
+        elif isinstance(player, Forward):
+            player.training_score()
+
 
 # classes Centre_back, Forward and Midfielder only for position
-class Centre_back(Footballer):
+class CentreBack(Footballer):
 
     def __init__(self, name, pace=0, shooting=0, passing=0, dribbling=0, defending=0, physics=0):
         super().__init__(name, pace, shooting, passing, dribbling, defending, physics)
@@ -98,12 +111,3 @@ class Midfielder(Footballer):
 
     def training_pass(self):
         print(f'{self.name} train to give the best passes')
-
-# function where we can check object`s class 
-'''def act(player):
-    if isinstance(player, Centre_back):
-        player.training_defence()
-    elif isinstance(player, Midfielder):
-        player.training_pass()
-    elif isinstance(player, Forward):
-        player.training_score()'''

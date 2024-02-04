@@ -1,12 +1,12 @@
 #  make class exception to pace characteristic
-class Pace_exception(Exception):
+class PaceException(Exception):
     #  init pace, minimal pace and maximum pace 
-    def __init__(self, pace, minpace, maxpace):
+    def __init__(self, pace, min_pace, max_pace):
         self.pace = pace
-        self.minpace = minpace
-        self.maxpace = maxpace
+        self.min_pace = min_pace
+        self.max_pace = max_pace
     
     #  print exception 
     def __str__(self):
-        return f"Invalid value: {self.pace}. " \
-               f"Pace should be from {self.minpace} to {self.maxpace}"
+        return f"Invalid pace value: {self.pace}.\n" \
+               f"Pace should be from {self.min_pace} to {self.max_pace}"
