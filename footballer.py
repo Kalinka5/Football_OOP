@@ -1,6 +1,6 @@
 # import classes AttrDisplay and Pace_exception
 from display import AttrDisplay
-from pace_exception import PaceException
+from exceptions/pace_exception import PaceException
 
 
 def pace_checking(pace):

@@ -1,7 +1,7 @@
 # import classes Centre_back, Midfielder, Forward; Football_team and Pace_exception
 from football_team import Football_team
 from footballer import CentreBack, Midfielder, Forward
-from pace_exception import PaceException
+from exceptions/pace_exception import PaceException
 
 
 # if program name is main, execute code
