@@ -26,6 +26,7 @@ if __name__ == '__main__':
 
         # create football team with football players what we created
         traders = FootballTeam('Traders', danya, eldar, vanya)
+        traders.training_defending()
         brawlers = FootballTeam('Brawlers', seriy, egor, igor)
         # testing class football team
         traders.show_all()

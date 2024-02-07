@@ -19,6 +19,42 @@ class Footballer(AttrDisplay):
         self.__position = None  # make default football player position
         self.__idol_name = 'Lionel Messi'  # make default icon name
 
+    def improve_pace(self, increase_value):
+        self.pace += increase_value
+        if self.pace > 100:
+            self.pace = 100
+        return self.pace
+
+    def improve_shooting(self, increase_value):
+        self.shooting += increase_value
+        if self.shooting > 100:
+            self.shooting = 100
+        return self.shooting
+
+    def improve_passing(self, increase_value):
+        self.passing += increase_value
+        if self.passing > 100:
+            self.passing = 100
+        return self.passing
+
+    def improve_dribbling(self, increase_value):
+        self.dribbling += increase_value
+        if self.dribbling > 100:
+            self.dribbling = 100
+        return self.dribbling
+
+    def improve_defending(self, increase_value):
+        self.defending += increase_value
+        if self.defending > 100:
+            self.defending = 100
+        return self.defending
+
+    def improve_physics(self, increase_value):
+        self.physics += increase_value
+        if self.physics > 100:
+            self.physics = 100
+        return self.physics
+
     # method to print the type of class
     @staticmethod
     def print_type():
@@ -61,15 +97,6 @@ class Footballer(AttrDisplay):
     @idol.setter
     def idol(self, idol_name):
         self.__idol_name = idol_name
-
-    # function where we can check object`s class
-    def act(self, player):
-        if isinstance(player, CentreBack):
-            player.training_defence()
-        elif isinstance(player, Midfielder):
-            player.training_pass()
-        elif isinstance(player, Forward):
-            player.training_score()
 
 
 # classes Centre_back, Forward and Midfielder only for position
