@@ -1,14 +1,6 @@
 # import classes AttrDisplay and Pace_exception
 from display import AttrDisplay
-from exceptions/pace_exception import PaceException
-
-
-def pace_checking(pace):
-    min_pace, max_pace = 0, 100  # select all player`s characteristic
-    if min_pace <= pace <= max_pace:  # speed check
-        return pace
-    else:
-        raise PaceException(pace, min_pace, max_pace)  # raise exception if failure speed check
+from checking_characteristics import pace_checking, shooting_checking, passing_checking, dribbling_checking, defending_checking, physics_checking
 
 
 # create class Footballer
@@ -19,11 +11,11 @@ class Footballer(AttrDisplay):
     def __init__(self, name, pace=0, shooting=0, passing=0, dribbling=0, defending=0, physics=0):
         self.__name = name        # select footballer name
         self.pace = pace_checking(pace)
-        self.shooting = shooting
-        self.passing = passing
-        self.dribbling = dribbling
-        self.defending = defending
-        self.physics = physics
+        self.shooting = shooting_checking(shooting)
+        self.passing = passing_checking(passing)
+        self.dribbling = dribbling_checking(dribbling)
+        self.defending = defending_checking(defending)
+        self.physics = physics_checking(physics)
         self.__position = None  # make default football player position
         self.__idol_name = 'Lionel Messi'  # make default icon name
 
