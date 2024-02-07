@@ -62,10 +62,6 @@ class Footballer(AttrDisplay):
     def idol(self, idol_name):
         self.__idol_name = idol_name
 
-    # function footballer speaking about him
-    def speak(self):
-        print(f'I`m {self.__name} and I`m the best {self.__position} in the world!')
-
     # function where we can check object`s class
     def act(self, player):
         if isinstance(player, CentreBack):

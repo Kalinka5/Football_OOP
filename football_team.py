@@ -1,5 +1,5 @@
 # create class Football_team
-class Football_team:
+class FootballTeam:
     # make init name of the team and arguments from class Footballer
     def __init__(self, team_name, *args):
         self.team_name = team_name

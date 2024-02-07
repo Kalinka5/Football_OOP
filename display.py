@@ -1,5 +1,9 @@
 # create class AttrDisplay
 class AttrDisplay:
+    # function footballer speaking about him
+    def speak(self):
+        print(f'I`m {getattr(self, "name")} and I`m the best {getattr(self, "position")} in the world!')
+
     # function to print favourite player
     def print_idol(self):
         print(f'My favourite footballer is {getattr(self, "idol")}.')

@@ -1,7 +1,13 @@
 # import classes Centre_back, Midfielder, Forward; Football_team and Pace_exception
-from football_team import Football_team
+from football_team import FootballTeam
 from footballer import CentreBack, Midfielder, Forward
+
 from exceptions.pace_exception import PaceException
+from exceptions.shooting_exception import ShootingException
+from exceptions.passing_exception import PassingException
+from exceptions.dribbling_exception import DribblingException
+from exceptions.defending_exception import DefendingException
+from exceptions.physics_exception import PhysicsException
 
 
 # if program name is main, execute code
@@ -19,11 +25,11 @@ if __name__ == '__main__':
         igor = Midfielder('Igorek', 80, 90, 80, 90, 60, 70)
 
         # create football team with football players what we created
-        traders = Football_team('Traders', danya, eldar, vanya)
-        brawlers = Football_team('Brawlers', seriy, egor, igor)
+        traders = FootballTeam('Traders', danya, eldar, vanya)
+        brawlers = FootballTeam('Brawlers', seriy, egor, igor)
         # testing class football team
         traders.show_all()
         brawlers.show_all()
     #  if exception works, it should print Pace_exception
-    except PaceException as e:
+    except (PaceException, ShootingException, PassingException, DribblingException, DefendingException, PhysicsException) as e:
         print(e)
