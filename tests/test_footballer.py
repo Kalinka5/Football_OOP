@@ -1,69 +1,152 @@
-import unittest
+import pytest
 
 from footballer import Footballer, CentreBack, Midfielder, Forward
 
 
-class TestFootballer(unittest.TestCase):
-
-    def setUp(self) -> None:
-        self.footballer = Footballer("Lionel")
-        self.footballer.position = "Centre back"
-
-    def test_get_name(self):
-        self.assertEqual(self.footballer.name, "Lionel")
-
-    def test_default_class_values(self):
-        self.assertEqual(self.footballer.pace, 0)
-        self.assertEqual(self.footballer.shooting, 0)
-        self.assertEqual(self.footballer.passing, 0)
-        self.assertEqual(self.footballer.dribbling, 0)
-        self.assertEqual(self.footballer.defending, 0)
-        self.assertEqual(self.footballer.physics, 0)
-
-    def test_getter_position(self):
-        self.assertEqual(self.footballer.position, "Centre back")
-
-    def test_setter_position(self):
-        self.footballer.position = "Goalkeeper"
-        self.assertEqual(self.footballer.position, "Goalkeeper")
-
-    def test_getter_idol(self):
-        self.assertEqual(self.footballer.idol, "Lionel Messi")
-
-    def test_setter_idol(self):
-        self.footballer.idol = "Ronaldinho"
-        self.assertEqual(self.footballer.idol, "Ronaldinho")
-
-    def test_repr_method(self):
-        self.assertEqual(str(self.footballer), '[Footballer: Lionel]')
+@pytest.fixture
+def example_footballer_data():
+    footballer = Footballer("Daniil")
+    footballer.position = "Goal Keeper"
+    return footballer
 
 
-class TestCentreBack(unittest.TestCase):
-
-    def setUp(self) -> None:
-        self.footballer = CentreBack("Virgil")
-
-    def test_position(self):
-        self.assertEqual(self.footballer.position, 'CENTRE BACK')
+@pytest.fixture
+def example_centre_back_data():
+    return CentreBack("Virgil")
 
 
-class TestMidfielder(unittest.TestCase):
-
-    def setUp(self) -> None:
-        self.footballer = Midfielder("Andres")
-
-    def test_position(self):
-        self.assertEqual(self.footballer.position, 'MIDFIELDER')
+@pytest.fixture
+def example_midfielder_data():
+    return Midfielder("Andres")
 
 
-class TestForward(unittest.TestCase):
-
-    def setUp(self) -> None:
-        self.footballer = Forward("Kylian")
-
-    def test_position(self):
-        self.assertEqual(self.footballer.position, 'FORWARD')
+@pytest.fixture
+def example_forward_data():
+    return Forward("Kylian")
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_get_footballer_name(example_footballer_data):
+    assert example_footballer_data.name == "Daniil"
+
+
+def test_default_footballer_values(example_footballer_data):
+    assert example_footballer_data.pace == 0
+    assert example_footballer_data.shooting == 0
+    assert example_footballer_data.passing == 0
+    assert example_footballer_data.dribbling == 0
+    assert example_footballer_data.defending == 0
+    assert example_footballer_data.physics == 0
+
+
+def test_improve_pace_method(example_footballer_data):
+    example_footballer_data.improve_pace(10)
+    assert example_footballer_data.pace == 10
+
+
+def test_increasing_pace_over_100(example_footballer_data):
+    example_footballer_data.improve_pace(110)
+    assert example_footballer_data.pace == 100
+
+
+def test_improve_shooting_method(example_footballer_data):
+    example_footballer_data.improve_shooting(10)
+    assert example_footballer_data.shooting == 10
+
+
+def test_increasing_shooting_over_100(example_footballer_data):
+    example_footballer_data.improve_shooting(110)
+    assert example_footballer_data.shooting == 100
+
+
+def test_improve_passing_method(example_footballer_data):
+    example_footballer_data.improve_passing(10)
+    assert example_footballer_data.passing == 10
+
+
+def test_increasing_passing_over_100(example_footballer_data):
+    example_footballer_data.improve_passing(110)
+    assert example_footballer_data.passing == 100
+
+
+def test_improve_dribbling_method(example_footballer_data):
+    example_footballer_data.improve_dribbling(10)
+    assert example_footballer_data.dribbling == 10
+
+
+def test_increasing_dribbling_over_100(example_footballer_data):
+    example_footballer_data.improve_dribbling(110)
+    assert example_footballer_data.dribbling == 100
+
+
+def test_improve_defending_method(example_footballer_data):
+    example_footballer_data.improve_defending(10)
+    assert example_footballer_data.defending == 10
+
+
+def test_increasing_defending_over_100(example_footballer_data):
+    example_footballer_data.improve_defending(110)
+    assert example_footballer_data.defending == 100
+
+
+def test_improve_physics_method(example_footballer_data):
+    example_footballer_data.improve_physics(10)
+    assert example_footballer_data.physics == 10
+
+
+def test_increasing_physics_over_100(example_footballer_data):
+    example_footballer_data.improve_physics(110)
+    assert example_footballer_data.physics == 100
+
+
+def test_footballer_getter_position(example_footballer_data):
+    assert example_footballer_data.position == "Goal Keeper"
+
+
+def test_footballer_setter_position(example_footballer_data):
+    example_footballer_data.position = "Center Back"
+    assert example_footballer_data.position == "Center Back"
+
+
+def test_footballer_getter_idol(example_footballer_data):
+    assert example_footballer_data.idol == "Lionel Messi"
+
+
+def test_footballer_setter_idol(example_footballer_data):
+    example_footballer_data.idol = "Ronaldinho"
+    assert example_footballer_data.idol == "Ronaldinho"
+
+
+def test_footballer_repr_method(example_footballer_data):
+    assert str(example_footballer_data) == "[Footballer: Daniil]"
+
+
+def test_centre_back_position(example_centre_back_data):
+    assert example_centre_back_data.position == "CENTRE BACK"
+
+
+def test_midfielder_position(example_midfielder_data):
+    assert example_midfielder_data.position == "MIDFIELDER"
+
+
+def test_forward_position(example_forward_data):
+    assert example_forward_data.position == "FORWARD"
+
+
+def test_footballer_print_type_method(example_footballer_data, capsys):
+    example_footballer_data.print_type()
+    captured = capsys.readouterr()
+    assert captured.out == "Footballer\n"
+
+
+# testing print output
+def test_footballer_speak_method(example_footballer_data, capsys):
+    example_footballer_data.speak()
+    captured = capsys.readouterr()
+    assert captured.out == "I`m Daniil and I`m the best Goal Keeper in the world!\n"
+
+
+def test_footballer_print_idol_method(example_footballer_data, capsys):
+    example_footballer_data.print_idol()
+    captured = capsys.readouterr()
+    assert captured.out == "My favourite footballer is Lionel Messi.\n"
+    

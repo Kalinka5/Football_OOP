@@ -1,6 +1,7 @@
 # import classes AttrDisplay and Pace_exception
 from display import AttrDisplay
-from checking_characteristics import pace_checking, shooting_checking, passing_checking, dribbling_checking, defending_checking, physics_checking
+from checking_characteristics import pace_checking, shooting_checking, passing_checking, dribbling_checking, \
+    defending_checking, physics_checking
 
 
 # create class Footballer
@@ -110,15 +111,6 @@ class CentreBack(Footballer):
         print(f'{self.name} train to take away balls different ways')
 
 
-class Forward(Footballer):
-    def __init__(self, name, pace=0, shooting=0, passing=0, dribbling=0, defending=0, physics=0):
-        super().__init__(name, pace, shooting, passing, dribbling, defending, physics)
-        self.position = 'FORWARD'
-
-    def training_score(self):
-        print(f'{self.name} train in shooting, pace and dribbling to score the goal')
-
-
 class Midfielder(Footballer):
     def __init__(self, name, pace=0, shooting=0, passing=0, dribbling=0, defending=0, physics=0):
         super().__init__(name, pace, shooting, passing, dribbling, defending, physics)
@@ -126,3 +118,12 @@ class Midfielder(Footballer):
 
     def training_pass(self):
         print(f'{self.name} train to give the best passes')
+
+
+class Forward(Footballer):
+    def __init__(self, name, pace=0, shooting=0, passing=0, dribbling=0, defending=0, physics=0):
+        super().__init__(name, pace, shooting, passing, dribbling, defending, physics)
+        self.position = 'FORWARD'
+
+    def training_score(self):
+        print(f'{self.name} train in shooting, pace and dribbling to score the goal')
