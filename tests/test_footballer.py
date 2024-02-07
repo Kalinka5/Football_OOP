@@ -1,6 +1,6 @@
 import unittest
 
-from footballer import Footballer
+from footballer import Footballer, CentreBack, Midfielder, Forward
 
 
 class TestFootballer(unittest.TestCase):
@@ -33,6 +33,36 @@ class TestFootballer(unittest.TestCase):
     def test_setter_idol(self):
         self.footballer.idol = "Ronaldinho"
         self.assertEqual(self.footballer.idol, "Ronaldinho")
+
+    def test_repr_method(self):
+        self.assertEqual(str(self.footballer), '[Footballer: Lionel]')
+
+
+class TestCentreBack(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.footballer = CentreBack("Virgil")
+
+    def test_position(self):
+        self.assertEqual(self.footballer.position, 'CENTRE BACK')
+
+
+class TestMidfielder(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.footballer = Midfielder("Andres")
+
+    def test_position(self):
+        self.assertEqual(self.footballer.position, 'MIDFIELDER')
+
+
+class TestForward(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.footballer = Forward("Kylian")
+
+    def test_position(self):
+        self.assertEqual(self.footballer.position, 'FORWARD')
 
 
 if __name__ == '__main__':
