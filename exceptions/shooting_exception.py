@@ -1,6 +1,6 @@
 class ShootingException(Exception):
     
-    def __init__(self, shooting, min_pace, max_pace):
+    def __init__(self, shooting, min_shooting, max_shooting):
         self.shooting = shooting
         self.min_shooting = min_shooting
         self.max_shooting = max_shooting

@@ -3,7 +3,7 @@ install:
 		pip install -r requirements.txt
 
 test:
-	python -m pytest --cov=footballer tests
+	python -m pytest --cov=exceptions --cov=footballer tests
 
 format:
 	black *.py
